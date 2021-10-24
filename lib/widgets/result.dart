@@ -1,70 +1,27 @@
 import 'package:flutter/material.dart';
 
 class Result extends StatelessWidget {
-  const Result({
-    Key? key,
-    required double kelvin,
-    required double reamur,
-  })  : _kelvin = kelvin,
-        _reamur = reamur,
+  const Result({ Key? key, required double result})  
+      : _result = result,
         super(key: key);
 
-  final double _kelvin;
-  final double _reamur;
+  final double _result;
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+      child: Column(
         children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                child: Text(
-                  'Suhu Dalam Kelvin',
-                  textAlign: TextAlign.center,
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.only(
-                  top: 10,
-                ),
-                child: Text(
-                  '$_kelvin',
-                  style: TextStyle(
-                    fontSize: 30,
-                  ),
-                ),
-              ),
-            ],
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                child: Text(
-                  'Suhu dalam Reamor',
-                  textAlign: TextAlign.center,
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.only(
-                  top: 10,
-                ),
-                child: Text(
-                  '$_reamur',
-                  style: TextStyle(
-                    fontSize: 30,
-                  ),
-                ),
-              ),
-            ],
+          Text("Hasil Konversi"),
+          Container(
+            margin: EdgeInsets.only(top: 20, bottom: 20),
+            child: Text(
+              _result.toStringAsFixed(2),
+              style: TextStyle(fontSize: 36),
+            ),
           ),
         ],
       ),
     );
   }
 }
-

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class Conv extends StatelessWidget {
-  const Conv({Key? key, required this.convr}) : super(key: key);
+class Convert extends StatelessWidget {
+  const Convert({Key? key, required this.convr}) : super(key: key);
 
   final Function convr;
 

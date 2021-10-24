@@ -15,20 +15,40 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   //variabel berubah
-  double _inputUSer = 0;
+  double _inputUser = 0;
   double _kelvin = 0;
   double _reamur = 0;
   // double _farenheit = 0;
   final inputController = TextEditingController();
+  String _newValue = "Kelvin";   
+  double _result = 0;
 
   void hitungSuhu() {
     setState(() {
-      _inputUSer = double.parse(inputController.text);
-      _kelvin = _inputUSer + 273;
-      _reamur = (4 / 5) * _inputUSer;
+      _inputUser = double.parse(inputController.text);
+      _kelvin = _inputUser + 273;
+      _reamur = (4 / 5) * _inputUser;
       // _farenheit = (9 / 5) * _inputUSer + 32;
     });
   }
+
+  void dropdownOnChanged(changeValue){       
+    setState(() {           
+      _newValue = changeValue;       
+      });   
+  } 
+
+void perhitunganSuhu() {     
+  setState(() {       
+    _inputUser = double.parse(inputController.text);         
+    if (_newValue == "Kelvin")         
+    _result = _inputUser + 273;       
+    else         
+    _result = (4 / 5) * _inputUser;     
+  });   
+} 
+  var listItem = ["Kelvin", "Reamur"]; 
+  List<String> listHasil = [];
 
   @override
   Widget build(BuildContext context) {
@@ -47,9 +67,22 @@ class _MyAppState extends State<MyApp> {
           child: Column(
             children: [
               Input(inputController: inputController),
-              Result(kelvin: _kelvin, reamur: _reamur),
-              Conv(
-                convr: hitungSuhu,
+              DropdownButton(
+                items: listItem.map((String value) {
+                  return DropdownMenuItem(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
+                value: _newValue,
+                onChanged: dropdownOnChanged,
+                isExpanded: true,
+              ),
+              Result(
+                result: _result,
+              ),
+              Convert(
+                convr: perhitunganSuhu,
               ),
             ],
           ),
